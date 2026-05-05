@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Quicksand:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-dark-red: #7a0000;
+  --brand-white: #ffffff;
+  --brand-pastel-grey: #d2c8be;
+  --brand-gray-brown: #574944;
+  --brand-black: #000000;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .font-script {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+
+  .font-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+  }
+}
+
+@layer components {
+  html {
+    @apply scroll-smooth;
+  }
+}
