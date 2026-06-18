@@ -2,11 +2,20 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Send } from 'lucide-react';
+import { Send, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
+  const [newsletterState, setNewsletterState] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setNewsletterState('success');
+    setEmail('');
+    setTimeout(() => setNewsletterState('idle'), 3000);
+  };
 
   const footerVariants = {
     hidden: { opacity: 0, y: 40 },
@@ -38,12 +47,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-black text-white">
+    <footer className="w-full bg-jewellect-black text-white">
       {/* Divider */}
-      <div
-        className="w-full h-px"
-        style={{ backgroundColor: '#7a0000' }}
-      />
+      <div className="w-full h-px bg-jewellect-maroon" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         {/* Logo */}
@@ -54,7 +60,7 @@ export default function Footer() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="font-script italic text-3xl">her</p>
+          <p className="font-script text-3xl">Jewellect</p>
           <p className="text-xs tracking-widest text-gray-400 mt-1">
             EST. 2030
           </p>
@@ -73,24 +79,24 @@ export default function Footer() {
             <h4 className="font-display text-lg mb-6">Navigation</h4>
             <ul className="space-y-3 text-sm text-gray-300">
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link href="/#" className="hover:text-white transition">
                   Collections
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link href="/catalogue" className="hover:text-white transition">
                   Catalogue
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link href="/#" className="hover:text-white transition">
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link href="/#" className="hover:text-white transition">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>
@@ -101,10 +107,10 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-gray-300">
               <li>
                 <a
-                  href="mailto:hello@her.com"
+                  href="mailto:hello@jewellect.com"
                   className="hover:text-white transition"
                 >
-                  hello@her.com
+                  hello@jewellect.com
                 </a>
               </li>
               <li>
@@ -127,21 +133,29 @@ export default function Footer() {
             <p className="text-sm text-gray-300 mb-4">
               Receive curated selections & exclusive updates.
             </p>
-            <div className="flex">
+            <form onSubmit={handleNewsletterSubmit} className="flex">
               <input
                 type="email"
                 placeholder="Your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 bg-gray-800 text-white text-sm px-4 py-2 focus:outline-none"
+                disabled={newsletterState === 'success'}
               />
               <button
-                className="px-4 py-2 hover:opacity-70 transition"
-                style={{ backgroundColor: '#7a0000' }}
+                type="submit"
+                className="px-4 py-2 hover:opacity-70 transition bg-jewellect-maroon"
               >
-                <Send size={16} />
+                {newsletterState === 'success' ? (
+                  <Check size={16} />
+                ) : (
+                  <Send size={16} />
+                )}
               </button>
-            </div>
+            </form>
+            {newsletterState === 'success' && (
+              <p className="text-xs text-green-400 mt-2">Subscribed! Thank you.</p>
+            )}
           </motion.div>
         </motion.div>
 
@@ -154,7 +168,7 @@ export default function Footer() {
           className="border-t border-gray-800 pt-8 text-center"
         >
           <p className="text-xs text-gray-400 tracking-widest">
-            Copyright 2030 HER – For All Women. All rights reserved.
+            Copyright 2030 Jewellect — Timeless Luxury. All rights reserved.
           </p>
         </motion.div>
       </div>

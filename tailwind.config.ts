@@ -9,6 +9,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        cormorant: ['var(--font-cormorant)', 'serif'],
+        italianno: ['var(--font-italianno)', 'cursive'],
+        quicksand: ['var(--font-quicksand)', 'sans-serif'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -59,6 +64,13 @@ const config: Config = {
           '3': 'hsl(var(--chart-3))',
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
+        },
+        jewellect: {
+          cream: '#F4D9B5',
+          gold: '#EDC483',
+          maroon: '#770523',
+          wine: '#53131E',
+          black: '#231919',
         },
       },
       keyframes: {

@@ -1,10 +1,13 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
 export default function Hero() {
+  const router = useRouter();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -56,10 +59,10 @@ export default function Hero() {
         {/* Main Logo */}
         <motion.h1
           variants={itemVariants}
-          className="font-script italic text-white mb-4"
-          style={{ fontSize: 'clamp(80px, 15vw, 140px)' }}
+          className="font-script text-white mb-4"
+          style={{ fontSize: 'clamp(60px, 12vw, 120px)' }}
         >
-          her
+          Jewellect
         </motion.h1>
 
         {/* Tagline */}
@@ -68,7 +71,7 @@ export default function Hero() {
           className="text-white tracking-[0.3em] mb-12 font-light"
           style={{ fontSize: 'clamp(14px, 2vw, 24px)' }}
         >
-          FOR ALL WOMEN
+          TIMELESS LUXURY
         </motion.p>
 
         {/* CTA Button */}
@@ -76,7 +79,8 @@ export default function Hero() {
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="border-2 border-white text-white px-8 py-3 tracking-wider text-sm hover:bg-white hover:text-black transition-colors duration-300"
+          onClick={() => router.push('/catalogue')}
+          className="border-2 border-white text-white px-8 py-3 tracking-wider text-sm hover:bg-white hover:text-jewellect-black transition-colors duration-300"
         >
           EXPLORE COLLECTION
         </motion.button>

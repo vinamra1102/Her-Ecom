@@ -50,10 +50,7 @@ const itemVariants = {
 
 export default function CategoryCards() {
   return (
-    <section
-      className="w-full py-24"
-      style={{ backgroundColor: '#d2c8be' }}
-    >
+    <section className="w-full py-24 bg-jewellect-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <motion.div
@@ -63,7 +60,7 @@ export default function CategoryCards() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-script italic text-4xl md:text-5xl text-gray-900">
+          <h2 className="font-script text-4xl md:text-5xl text-jewellect-black">
             Explore Categories
           </h2>
         </motion.div>
@@ -97,7 +94,7 @@ export default function CategoryCards() {
                 transition={{ duration: 0.3 }}
                 className="absolute inset-0 flex items-center justify-center"
               >
-                <h3 className="font-script italic text-3xl md:text-4xl text-white">
+                <h3 className="font-script text-3xl md:text-4xl text-white">
                   {category.name}
                 </h3>
               </motion.div>

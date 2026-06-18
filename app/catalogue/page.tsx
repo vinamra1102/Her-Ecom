@@ -106,9 +106,9 @@ const categories = ['All', 'Dresses', 'Tops', 'Knitwear', 'Accessories', 'Evenin
 const sizeOptions = ['XS', 'S', 'M', 'L', 'XL'];
 const colorSwatches: { name: string; hex: string }[] = [
   { name: 'White', hex: '#ffffff' },
-  { name: 'Black', hex: '#000000' },
-  { name: 'Red', hex: '#7a0000' },
-  { name: 'Beige', hex: '#d2c8be' },
+  { name: 'Black', hex: '#231919' },
+  { name: 'Red', hex: '#770523' },
+  { name: 'Beige', hex: '#F4D9B5' },
   { name: 'Grey', hex: '#8a8a8a' },
 ];
 const sortOptions = ['Featured', 'Price Low-High', 'Price High-Low', 'Newest'];
@@ -210,11 +210,11 @@ export default function CataloguePage() {
               className="flex items-center gap-3 cursor-pointer group"
             >
               <div
-                className="w-4 h-4 border rounded-sm flex items-center justify-center transition-colors"
-                style={{
-                  borderColor: selectedCategory === cat ? '#7a0000' : '#d2c8be',
-                  backgroundColor: selectedCategory === cat ? '#7a0000' : 'transparent',
-                }}
+                className={`w-4 h-4 border rounded-sm flex items-center justify-center transition-colors ${
+                  selectedCategory === cat
+                    ? 'bg-primary border-primary'
+                    : 'border-muted'
+                }`}
               >
                 {selectedCategory === cat && (
                   <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
@@ -223,12 +223,9 @@ export default function CataloguePage() {
                 )}
               </div>
               <span
-                className="text-sm transition-colors"
-                style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  color: selectedCategory === cat ? '#7a0000' : '#374151',
-                  fontWeight: selectedCategory === cat ? 600 : 400,
-                }}
+                className={`text-sm transition-colors font-quicksand ${
+                  selectedCategory === cat ? 'text-primary font-semibold' : 'text-gray-700'
+                }`}
                 onClick={() => setSelectedCategory(cat)}
               >
                 {cat}
@@ -248,13 +245,11 @@ export default function CataloguePage() {
             <button
               key={size}
               onClick={() => toggleSize(size)}
-              className="w-10 h-10 text-xs font-medium border rounded-full transition-all duration-200"
-              style={{
-                borderColor: selectedSizes.includes(size) ? '#7a0000' : '#d2c8be',
-                backgroundColor: selectedSizes.includes(size) ? '#7a0000' : 'transparent',
-                color: selectedSizes.includes(size) ? '#ffffff' : '#374151',
-                fontFamily: "'Quicksand', sans-serif",
-              }}
+              className={`w-10 h-10 text-xs font-medium border rounded-full transition-all duration-200 font-quicksand ${
+                selectedSizes.includes(size)
+                  ? 'bg-primary border-primary text-white'
+                  : 'border-muted text-gray-700'
+              }`}
             >
               {size}
             </button>
@@ -268,7 +263,7 @@ export default function CataloguePage() {
           Price Range
         </h4>
         <div className="space-y-3">
-          <div className="flex justify-between text-sm" style={{ fontFamily: "'Quicksand', sans-serif" }}>
+          <div className="flex justify-between text-sm font-quicksand">
             <span>&euro;{priceRange[0]}</span>
             <span>&euro;{priceRange[1]}</span>
           </div>
@@ -281,12 +276,9 @@ export default function CataloguePage() {
             onChange={(e) =>
               setPriceRange([priceRange[0], parseInt(e.target.value)])
             }
-            className="w-full h-1 rounded-full appearance-none cursor-pointer"
-            style={{
-              background: `linear-gradient(to right, #7a0000 0%, #7a0000 ${((priceRange[1]) / 2000) * 100}%, #d2c8be ${((priceRange[1]) / 2000) * 100}%, #d2c8be 100%)`,
-            }}
+            className="w-full h-1 rounded-full appearance-none cursor-pointer accent-jewellect-maroon"
           />
-          <div className="flex justify-between text-xs text-gray-400" style={{ fontFamily: "'Quicksand', sans-serif" }}>
+          <div className="flex justify-between text-xs text-gray-400 font-quicksand">
             <span>&euro;0</span>
             <span>&euro;2000</span>
           </div>
@@ -307,17 +299,18 @@ export default function CataloguePage() {
               title={swatch.name}
             >
               <div
-                className="w-7 h-7 rounded-full border-2 transition-all duration-200"
+                className={`w-7 h-7 rounded-full border-2 transition-all duration-200 ${
+                  selectedColors.includes(swatch.name)
+                    ? 'shadow-[0_0_0_2px] shadow-jewellect-maroon'
+                    : ''
+                }`}
                 style={{
                   backgroundColor: swatch.hex,
                   borderColor: selectedColors.includes(swatch.name)
-                    ? '#7a0000'
+                    ? '#770523'
                     : swatch.hex === '#ffffff'
-                    ? '#d2c8be'
+                    ? '#D4C4A8'
                     : 'transparent',
-                  boxShadow: selectedColors.includes(swatch.name)
-                    ? '0 0 0 2px #7a0000'
-                    : 'none',
                 }}
               />
             </button>
@@ -329,8 +322,7 @@ export default function CataloguePage() {
       {hasActiveFilters && (
         <button
           onClick={clearFilters}
-          className="text-sm tracking-wider transition-opacity hover:opacity-70"
-          style={{ color: '#7a0000', fontFamily: "'Quicksand', sans-serif" }}
+          className="text-sm tracking-wider transition-opacity hover:opacity-70 text-jewellect-maroon font-quicksand"
         >
           Clear Filters
         </button>
@@ -339,20 +331,17 @@ export default function CataloguePage() {
   );
 
   return (
-    <main className="w-full bg-white min-h-screen">
+    <main className="w-full bg-background min-h-screen">
       <Navbar />
 
       {/* Hero Banner */}
-      <section
-        className="w-full pt-28 pb-12"
-        style={{ backgroundColor: '#d2c8be' }}
-      >
+      <section className="w-full pt-28 pb-12 bg-jewellect-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="font-script italic text-4xl md:text-5xl text-gray-900 mb-3"
+            className="font-script text-4xl md:text-5xl text-jewellect-black mb-3"
           >
             Our Collection
           </motion.h1>
@@ -360,8 +349,7 @@ export default function CataloguePage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-sm tracking-widest text-gray-600"
-            style={{ fontFamily: "'Quicksand', sans-serif" }}
+            className="text-sm tracking-widest text-jewellect-wine font-quicksand"
           >
             CURATED PIECES FOR THE MODERN WOMAN
           </motion.p>
@@ -374,8 +362,7 @@ export default function CataloguePage() {
         <div className="lg:hidden mb-6">
           <button
             onClick={() => setMobileFilterOpen(true)}
-            className="flex items-center gap-2 text-sm tracking-wider text-gray-700"
-            style={{ fontFamily: "'Quicksand', sans-serif" }}
+            className="flex items-center gap-2 text-sm tracking-wider text-gray-700 font-quicksand"
           >
             <SlidersHorizontal size={16} />
             FILTERS
@@ -391,21 +378,14 @@ export default function CataloguePage() {
           {/* Product Grid Area */}
           <div className="flex-1 min-w-0">
             {/* Sort Bar */}
-            <div
-              className="flex items-center justify-between pb-4 mb-8 border-b"
-              style={{ borderColor: '#7a0000' }}
-            >
-              <p
-                className="text-sm text-gray-500"
-                style={{ fontFamily: "'Quicksand', sans-serif" }}
-              >
+            <div className="flex items-center justify-between pb-4 mb-8 border-b border-primary/30">
+              <p className="text-sm text-gray-500 font-quicksand">
                 {filteredProducts.length} piece{filteredProducts.length !== 1 ? 's' : ''}
               </p>
               <div className="relative">
                 <button
                   onClick={() => setSortOpen(!sortOpen)}
-                  className="flex items-center gap-2 text-sm text-gray-700"
-                  style={{ fontFamily: "'Quicksand', sans-serif" }}
+                  className="flex items-center gap-2 text-sm text-gray-700 font-quicksand"
                 >
                   Sort: {sortBy}
                   <ChevronDown
@@ -429,12 +409,9 @@ export default function CataloguePage() {
                             setSortBy(option);
                             setSortOpen(false);
                           }}
-                          className="block w-full text-left px-4 py-2.5 text-sm transition-colors hover:bg-gray-50"
-                          style={{
-                            fontFamily: "'Quicksand', sans-serif",
-                            color: sortBy === option ? '#7a0000' : '#374151',
-                            fontWeight: sortBy === option ? 600 : 400,
-                          }}
+                          className={`block w-full text-left px-4 py-2.5 text-sm transition-colors hover:bg-gray-50 font-quicksand ${
+                            sortBy === option ? 'text-primary font-semibold' : 'text-gray-700'
+                          }`}
                         >
                           {option}
                         </button>
@@ -467,10 +444,7 @@ export default function CataloguePage() {
                         />
                         {/* Hover Overlay */}
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                          <span
-                            className="px-6 py-2.5 border border-white text-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-colors duration-300"
-                            style={{ fontFamily: "'Quicksand', sans-serif" }}
-                          >
+                          <span className="px-6 py-2.5 border border-white text-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-jewellect-black transition-colors duration-300 font-quicksand">
                             View Item
                           </span>
                         </div>
@@ -478,19 +452,13 @@ export default function CataloguePage() {
 
                       {/* Product Info */}
                       <div className="mt-4">
-                        <h3 className="font-display text-lg text-gray-900 mb-1">
+                        <h3 className="font-display text-lg text-jewellect-black mb-1">
                           {product.name}
                         </h3>
-                        <p
-                          className="text-[10px] tracking-[0.2em] uppercase mb-1.5"
-                          style={{ color: '#7a0000', fontFamily: "'Quicksand', sans-serif" }}
-                        >
+                        <p className="text-[10px] tracking-[0.2em] uppercase mb-1.5 text-primary font-quicksand">
                           {product.category}
                         </p>
-                        <p
-                          className="text-sm text-gray-700"
-                          style={{ fontFamily: "'Quicksand', sans-serif" }}
-                        >
+                        <p className="text-sm text-jewellect-wine font-quicksand">
                           &euro;{product.price.toLocaleString()}
                         </p>
                       </div>
@@ -507,21 +475,15 @@ export default function CataloguePage() {
                 animate={{ opacity: 1 }}
                 className="text-center py-24"
               >
-                <p
-                  className="font-script italic text-2xl text-gray-400 mb-4"
-                >
+                <p className="font-script text-2xl text-gray-400 mb-4">
                   No pieces found
                 </p>
-                <p
-                  className="text-sm text-gray-400 mb-6"
-                  style={{ fontFamily: "'Quicksand', sans-serif" }}
-                >
+                <p className="text-sm text-gray-400 mb-6 font-quicksand">
                   Try adjusting your filters to discover more.
                 </p>
                 <button
                   onClick={clearFilters}
-                  className="text-sm tracking-wider hover:opacity-70 transition-opacity"
-                  style={{ color: '#7a0000', fontFamily: "'Quicksand', sans-serif" }}
+                  className="text-sm tracking-wider hover:opacity-70 transition-opacity text-primary font-quicksand"
                 >
                   Clear Filters
                 </button>

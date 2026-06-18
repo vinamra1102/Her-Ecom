@@ -206,7 +206,7 @@ const accordionSections = [
   {
     title: 'Shipping & Returns',
     content:
-      'Complimentary express shipping on all orders. Delivery within 2-4 business days. Free returns within 14 days of delivery. Items must be unworn with all tags attached. Contact concierge@her.com for return authorization.',
+      'Complimentary express shipping on all orders. Delivery within 2-4 business days. Free returns within 14 days of delivery. Items must be unworn with all tags attached. Contact concierge@jewellect.com for return authorization.',
   },
   {
     title: 'Size & Fit',
@@ -237,17 +237,16 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
 
   if (!product) {
     return (
-      <main className="w-full bg-white min-h-screen">
+      <main className="w-full bg-background min-h-screen">
         <Navbar />
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
-            <p className="font-script italic text-3xl text-gray-400 mb-4">
+            <p className="font-script text-3xl text-gray-400 mb-4">
               Piece not found
             </p>
             <Link
               href="/catalogue"
-              className="text-sm tracking-wider hover:opacity-70 transition-opacity"
-              style={{ color: '#7a0000', fontFamily: "'Quicksand', sans-serif" }}
+              className="text-sm tracking-wider hover:opacity-70 transition-opacity text-primary font-quicksand"
             >
               Back to Collection
             </Link>
@@ -259,7 +258,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
   }
 
   return (
-    <main className="w-full bg-white min-h-screen">
+    <main className="w-full bg-background min-h-screen">
       <Navbar />
 
       <div className="pt-28 pb-16">
@@ -271,7 +270,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
             transition={{ duration: 0.4 }}
             className="mb-8"
           >
-            <ol className="flex items-center gap-2 text-xs" style={{ fontFamily: "'Quicksand', sans-serif" }}>
+            <ol className="flex items-center gap-2 text-xs font-quicksand">
               <li>
                 <Link href="/" className="text-gray-400 hover:text-gray-600 transition-colors">
                   Home
@@ -279,7 +278,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               </li>
               <li className="text-gray-300">/</li>
               <li>
-                <Link href="/catalogue" style={{ color: '#7a0000' }} className="hover:opacity-70 transition-opacity">
+                <Link href="/catalogue" className="text-primary hover:opacity-70 transition-opacity">
                   Catalogue
                 </Link>
               </li>
@@ -336,10 +335,9 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                       style={{ opacity: activeImage === i + 1 ? 1 : 0.6 }}
                     />
                     <div
-                      className="absolute inset-0 border-2 transition-colors duration-200"
-                      style={{
-                        borderColor: activeImage === i + 1 ? '#7a0000' : 'transparent',
-                      }}
+                      className={`absolute inset-0 border-2 transition-colors duration-200 ${
+                        activeImage === i + 1 ? 'border-primary' : 'border-transparent'
+                      }`}
                     />
                   </button>
                 ))}
@@ -354,50 +352,35 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               className="lg:col-span-5"
             >
               {/* Category Tag */}
-              <p
-                className="text-[10px] tracking-[0.25em] uppercase mb-3"
-                style={{ color: '#7a0000', fontFamily: "'Quicksand', sans-serif" }}
-              >
+              <p className="text-[10px] tracking-[0.25em] uppercase mb-3 text-primary font-quicksand">
                 {product.category}
               </p>
 
               {/* Product Name */}
-              <h1 className="font-script italic text-gray-900 mb-4" style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}>
+              <h1 className="font-script text-gray-900 mb-4" style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}>
                 {product.name}
               </h1>
 
               {/* Price */}
-              <p
-                className="text-xl mb-6"
-                style={{ color: '#574944', fontFamily: "'Quicksand', sans-serif" }}
-              >
+              <p className="text-xl mb-6 text-jewellect-wine font-quicksand">
                 &euro;{product.price.toLocaleString()}
               </p>
 
               {/* Divider */}
-              <div className="w-12 h-px mb-6" style={{ backgroundColor: '#7a0000' }} />
+              <div className="w-12 h-px mb-6 bg-primary" />
 
               {/* Description */}
-              <p
-                className="text-sm leading-relaxed text-gray-600 mb-8"
-                style={{ fontFamily: "'Quicksand', sans-serif", fontWeight: 300 }}
-              >
+              <p className="text-sm leading-relaxed text-gray-600 mb-8 font-quicksand font-light">
                 {product.description}
               </p>
 
               {/* Size Selector */}
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h4
-                    className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gray-500"
-                    style={{ fontFamily: "'Quicksand', sans-serif" }}
-                  >
+                  <h4 className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gray-500 font-quicksand">
                     Select Size
                   </h4>
-                  <button
-                    className="text-[10px] tracking-wider underline"
-                    style={{ color: '#7a0000', fontFamily: "'Quicksand', sans-serif" }}
-                  >
+                  <button className="text-[10px] tracking-wider underline text-primary font-quicksand">
                     Size Guide
                   </button>
                 </div>
@@ -406,13 +389,11 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className="min-w-[44px] h-11 px-4 text-xs font-medium border rounded-full transition-all duration-200"
-                      style={{
-                        borderColor: selectedSize === size ? '#7a0000' : '#d2c8be',
-                        backgroundColor: selectedSize === size ? '#7a0000' : 'transparent',
-                        color: selectedSize === size ? '#ffffff' : '#374151',
-                        fontFamily: "'Quicksand', sans-serif",
-                      }}
+                      className={`min-w-[44px] h-11 px-4 text-xs font-medium border rounded-full transition-all duration-200 font-quicksand ${
+                        selectedSize === size
+                          ? 'bg-primary border-primary text-white'
+                          : 'border-muted text-gray-700'
+                      }`}
                     >
                       {size}
                     </button>
@@ -422,23 +403,17 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
 
               {/* Quantity */}
               <div className="mb-8">
-                <h4
-                  className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gray-500 mb-4"
-                  style={{ fontFamily: "'Quicksand', sans-serif" }}
-                >
+                <h4 className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gray-500 mb-4 font-quicksand">
                   Quantity
                 </h4>
-                <div className="inline-flex items-center border rounded-full" style={{ borderColor: '#d2c8be' }}>
+                <div className="inline-flex items-center border border-muted rounded-full">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                     className="w-11 h-11 flex items-center justify-center text-gray-500 hover:text-gray-900 transition-colors"
                   >
                     <Minus size={14} />
                   </button>
-                  <span
-                    className="w-10 text-center text-sm font-medium"
-                    style={{ fontFamily: "'Quicksand', sans-serif" }}
-                  >
+                  <span className="w-10 text-center text-sm font-medium font-quicksand">
                     {quantity}
                   </span>
                   <button
@@ -454,46 +429,30 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               <button
                 onClick={handleAddToBag}
                 disabled={!selectedSize}
-                className="w-full py-4 text-white text-xs tracking-[0.25em] uppercase transition-colors duration-300 flex items-center justify-center gap-3 mb-3 disabled:opacity-40 disabled:cursor-not-allowed"
-                style={{
-                  backgroundColor: '#000000',
-                  fontFamily: "'Quicksand', sans-serif",
-                }}
-                onMouseEnter={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#7a0000')}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#000000')}
+                className="w-full py-4 text-white text-xs tracking-[0.25em] uppercase transition-colors duration-300 flex items-center justify-center gap-3 mb-3 disabled:opacity-40 disabled:cursor-not-allowed bg-jewellect-black hover:bg-primary font-quicksand"
               >
                 <ShoppingBag size={16} />
                 {selectedSize ? 'Add to Bag' : 'Select a Size'}
               </button>
 
               {/* Wishlist */}
-              <button
-                className="w-full py-4 text-xs tracking-[0.25em] uppercase border transition-colors duration-300 flex items-center justify-center gap-3 mb-8"
-                style={{
-                  borderColor: '#d2c8be',
-                  color: '#374151',
-                  fontFamily: "'Quicksand', sans-serif",
-                }}
-              >
+              <button className="w-full py-4 text-xs tracking-[0.25em] uppercase border border-muted text-gray-700 transition-colors duration-300 flex items-center justify-center gap-3 mb-8 font-quicksand hover:border-primary hover:text-primary">
                 <Heart size={16} />
                 Add to Wishlist
               </button>
 
               {/* Divider */}
-              <div className="w-full h-px mb-6" style={{ backgroundColor: '#d2c8be' }} />
+              <div className="w-full h-px mb-6 bg-muted" />
 
               {/* Accordion Sections */}
               <div className="space-y-0">
                 {accordionSections.map((section, i) => (
-                  <div key={i} className="border-b" style={{ borderColor: '#d2c8be' }}>
+                  <div key={i} className="border-b border-muted">
                     <button
                       onClick={() => setOpenAccordion(openAccordion === i ? null : i)}
                       className="w-full flex items-center justify-between py-5 text-left"
                     >
-                      <span
-                        className="text-xs font-semibold tracking-[0.15em] uppercase text-gray-700"
-                        style={{ fontFamily: "'Quicksand', sans-serif" }}
-                      >
+                      <span className="text-xs font-semibold tracking-[0.15em] uppercase text-gray-700 font-quicksand">
                         {section.title}
                       </span>
                       <motion.div
@@ -512,10 +471,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                           transition={{ duration: 0.25, ease: 'easeInOut' as const }}
                           className="overflow-hidden"
                         >
-                          <p
-                            className="pb-5 text-sm leading-relaxed text-gray-500"
-                            style={{ fontFamily: "'Quicksand', sans-serif", fontWeight: 300 }}
-                          >
+                          <p className="pb-5 text-sm leading-relaxed text-gray-500 font-quicksand font-light">
                             {section.content}
                           </p>
                         </motion.div>
@@ -536,10 +492,10 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               transition={{ duration: 0.8 }}
               className="text-center mb-12"
             >
-              <h2 className="font-script italic text-3xl md:text-4xl text-gray-900 mb-2">
+              <h2 className="font-script text-3xl md:text-4xl text-jewellect-black mb-2">
                 You May Also Like
               </h2>
-              <div className="w-12 h-px mx-auto" style={{ backgroundColor: '#7a0000' }} />
+              <div className="w-12 h-px mx-auto bg-primary" />
             </motion.div>
 
             <motion.div
@@ -576,28 +532,19 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                         className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                       <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <span
-                          className="px-6 py-2.5 border border-white text-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-colors duration-300"
-                          style={{ fontFamily: "'Quicksand', sans-serif" }}
-                        >
+                        <span className="px-6 py-2.5 border border-white text-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-jewellect-black transition-colors duration-300 font-quicksand">
                           View Item
                         </span>
                       </div>
                     </div>
                     <div className="mt-4">
-                      <h3 className="font-display text-lg text-gray-900 mb-1">
+                      <h3 className="font-display text-lg text-jewellect-black mb-1">
                         {item.name}
                       </h3>
-                      <p
-                        className="text-[10px] tracking-[0.2em] uppercase mb-1.5"
-                        style={{ color: '#7a0000', fontFamily: "'Quicksand', sans-serif" }}
-                      >
+                      <p className="text-[10px] tracking-[0.2em] uppercase mb-1.5 text-primary font-quicksand">
                         {item.category}
                       </p>
-                      <p
-                        className="text-sm text-gray-700"
-                        style={{ fontFamily: "'Quicksand', sans-serif" }}
-                      >
+                      <p className="text-sm text-jewellect-wine font-quicksand">
                         &euro;{item.price.toLocaleString()}
                       </p>
                     </div>

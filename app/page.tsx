@@ -6,8 +6,8 @@ import CategoryCards from '@/components/CategoryCards';
 import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'HER – For All Women | Luxury Feminine Fashion',
-  description: 'Timeless. Refined. Hers. Discover our curated collection of luxury feminine clothing.',
+  title: 'Jewellect — Timeless Luxury Fashion',
+  description: 'Curated luxury fashion for the modern woman.',
 };
 
 export default function Home() {

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 interface Product {
@@ -60,7 +61,7 @@ const itemVariants = {
 
 export default function NewArrivals() {
   return (
-    <section className="w-full bg-white py-24">
+    <section className="w-full bg-background py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <motion.div
@@ -70,13 +71,10 @@ export default function NewArrivals() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-script italic text-4xl md:text-5xl text-gray-900 mb-2">
+          <h2 className="font-script text-4xl md:text-5xl text-gray-900 mb-2">
             New Arrivals
           </h2>
-          <div
-            className="w-12 h-px mx-auto"
-            style={{ backgroundColor: '#7a0000' }}
-          />
+          <div className="w-12 h-px mx-auto bg-jewellect-maroon" />
         </motion.div>
 
         {/* Product Grid */}
@@ -88,44 +86,42 @@ export default function NewArrivals() {
           viewport={{ once: true, margin: '-50px' }}
         >
           {products.map((product) => (
-            <motion.div
-              key={product.id}
-              variants={itemVariants}
-              className="group relative"
-            >
-              {/* Product Image Container */}
-              <div className="relative h-96 md:h-[500px] overflow-hidden bg-gray-100">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+            <Link href={`/catalogue/${product.id}`} key={product.id}>
+              <motion.div
+                variants={itemVariants}
+                className="group relative"
+              >
+                {/* Product Image Container */}
+                <div className="relative h-96 md:h-[500px] overflow-hidden bg-gray-100">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
 
-                {/* Quick Add Overlay */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute inset-0 bg-black/70 flex items-center justify-center"
-                >
-                  <button
-                    className="px-6 py-2 text-white border border-white hover:bg-white hover:text-black transition-all duration-300"
-                    style={{ backgroundColor: '#7a0000' }}
+                  {/* Quick Add Overlay */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 bg-black/70 flex items-center justify-center"
                   >
-                    Quick Add
-                  </button>
-                </motion.div>
-              </div>
+                    <span className="px-6 py-2 text-white border border-white hover:bg-white hover:text-jewellect-black transition-all duration-300">
+                      Quick View
+                    </span>
+                  </motion.div>
+                </div>
 
-              {/* Product Info */}
-              <div className="mt-4 text-center">
-                <h3 className="font-display text-lg md:text-xl text-gray-900 mb-1">
-                  {product.name}
-                </h3>
-                <p className="text-sm text-gray-600">{product.price}</p>
-              </div>
-            </motion.div>
+                {/* Product Info */}
+                <div className="mt-4 text-center">
+                  <h3 className="font-display text-lg md:text-xl text-gray-900 mb-1">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm text-jewellect-wine">{product.price}</p>
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </motion.div>
       </div>

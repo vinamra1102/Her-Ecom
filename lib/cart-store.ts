@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 export interface CartItem {
   id: number;
@@ -22,27 +23,10 @@ interface CartState {
   subtotal: () => number;
 }
 
-const sampleItems: CartItem[] = [
-  {
-    id: 1,
-    name: 'Silk Wrap Dress',
-    price: 890,
-    size: 'M',
-    quantity: 1,
-    image: 'https://images.unsplash.com/photo-1566479179817-b7f7e8e64b6d?fit=crop&w=120&h=160',
-  },
-  {
-    id: 7,
-    name: 'Gold Chain Necklace',
-    price: 290,
-    size: 'OS',
-    quantity: 1,
-    image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?fit=crop&w=120&h=160',
-  },
-];
-
-export const useCartStore = create<CartState>((set, get) => ({
-  items: sampleItems,
+export const useCartStore = create<CartState>()(
+  persist(
+    (set, get) => ({
+  items: [],
   isOpen: false,
 
   addItem: (item) => {
@@ -81,4 +65,9 @@ export const useCartStore = create<CartState>((set, get) => ({
   totalItems: () => get().items.reduce((sum, i) => sum + i.quantity, 0),
 
   subtotal: () => get().items.reduce((sum, i) => sum + i.price * i.quantity, 0),
-}));
+}),
+    {
+      name: 'jewellect-cart',
+    }
+  )
+);

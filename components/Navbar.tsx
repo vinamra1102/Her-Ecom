@@ -32,6 +32,8 @@ export default function Navbar() {
     }),
   };
 
+  const linkColor = isScrolled ? 'text-jewellect-black' : 'text-white';
+
   return (
     <>
       <motion.nav
@@ -47,16 +49,10 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="group cursor-pointer">
               <div className="text-center">
-                <p
-                  className="font-script italic text-xl tracking-widest hover:opacity-70 transition"
-                  style={{ color: isScrolled ? '#000000' : '#ffffff' }}
-                >
-                  her
+                <p className={`font-script text-2xl tracking-widest hover:opacity-70 transition ${linkColor}`}>
+                  Jewellect
                 </p>
-                <p
-                  className="text-xs tracking-widest"
-                  style={{ color: isScrolled ? '#574944' : '#ffffff' }}
-                >
+                <p className={`text-xs tracking-widest ${isScrolled ? 'text-jewellect-wine' : 'text-white/70'}`}>
                   EST. 2030
                 </p>
               </div>
@@ -72,8 +68,7 @@ export default function Navbar() {
                   variants={navVariants}
                   initial="hidden"
                   animate="visible"
-                  className="text-sm tracking-wide hover:opacity-60 transition"
-                  style={{ color: isScrolled ? '#000000' : '#ffffff' }}
+                  className={`text-sm tracking-wide hover:opacity-60 transition ${linkColor}`}
                 >
                   {item}
                 </motion.a>
@@ -82,24 +77,15 @@ export default function Navbar() {
 
             {/* Right Icons */}
             <div className="flex items-center gap-6">
-              <button className="hover:opacity-60 transition">
-                <Search
-                  size={20}
-                  style={{ color: isScrolled ? '#000000' : '#ffffff' }}
-                />
+              <button className="hover:opacity-60 transition" aria-label="Search">
+                <Search size={20} className={linkColor} />
               </button>
               <div className="relative">
-                <button onClick={toggleCart} className="hover:opacity-60 transition">
-                  <ShoppingBag
-                    size={20}
-                    style={{ color: isScrolled ? '#000000' : '#ffffff' }}
-                  />
+                <button onClick={toggleCart} className="hover:opacity-60 transition" aria-label="Shopping bag">
+                  <ShoppingBag size={20} className={linkColor} />
                 </button>
                 {itemCount > 0 && (
-                  <span
-                    className="absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold"
-                    style={{ backgroundColor: '#7a0000' }}
-                  >
+                  <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold bg-jewellect-maroon">
                     {itemCount}
                   </span>
                 )}
@@ -109,17 +95,12 @@ export default function Navbar() {
               <button
                 className="md:hidden"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               >
                 {isMobileMenuOpen ? (
-                  <X
-                    size={24}
-                    style={{ color: isScrolled ? '#000000' : '#ffffff' }}
-                  />
+                  <X size={24} className={linkColor} />
                 ) : (
-                  <Menu
-                    size={24}
-                    style={{ color: isScrolled ? '#000000' : '#ffffff' }}
-                  />
+                  <Menu size={24} className={linkColor} />
                 )}
               </button>
             </div>
@@ -140,10 +121,11 @@ export default function Navbar() {
               <motion.a
                 key={item}
                 href={item === 'Catalogue' ? '/catalogue' : '#'}
+                onClick={() => setIsMobileMenuOpen(false)}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className="text-white text-2xl font-script italic hover:opacity-60 transition"
+                className="text-white text-2xl font-script hover:opacity-60 transition"
               >
                 {item}
               </motion.a>

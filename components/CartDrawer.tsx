@@ -3,12 +3,14 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/lib/cart-store';
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, subtotal, totalItems } = useCartStore();
+  const router = useRouter();
   const total = subtotal();
   const count = totalItems();
 
@@ -37,11 +39,8 @@ export default function CartDrawer() {
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5">
               <div className="flex items-baseline gap-2">
-                <h2 className="font-script italic text-2xl text-gray-900">Your Bag</h2>
-                <span
-                  className="text-xs text-gray-400"
-                  style={{ fontFamily: "'Quicksand', sans-serif" }}
-                >
+                <h2 className="font-script text-2xl text-gray-900">Your Bag</h2>
+                <span className="text-xs text-gray-400 font-quicksand">
                   ({count} item{count !== 1 ? 's' : ''})
                 </span>
               </div>
@@ -51,20 +50,19 @@ export default function CartDrawer() {
             </div>
 
             {/* Divider */}
-            <div className="h-px" style={{ backgroundColor: '#7a0000' }} />
+            <div className="h-px bg-jewellect-maroon" />
 
             {/* Cart Items or Empty State */}
             {items.length === 0 ? (
               <div className="flex-1 flex flex-col items-center justify-center px-6">
                 <ShoppingBag size={64} className="text-gray-200 mb-6" strokeWidth={1} />
-                <p className="font-script italic text-2xl text-gray-400 mb-4">
+                <p className="font-script text-2xl text-gray-400 mb-4">
                   Your bag is empty
                 </p>
                 <Link
                   href="/catalogue"
                   onClick={closeCart}
-                  className="text-sm tracking-wider underline hover:opacity-70 transition-opacity"
-                  style={{ color: '#7a0000', fontFamily: "'Quicksand', sans-serif" }}
+                  className="text-sm tracking-wider underline hover:opacity-70 transition-opacity text-jewellect-maroon font-quicksand"
                 >
                   Discover our collection
                 </Link>
@@ -98,35 +96,23 @@ export default function CartDrawer() {
                           <h4 className="font-display text-lg text-gray-900 leading-tight mb-0.5">
                             {item.name}
                           </h4>
-                          <p
-                            className="text-xs text-gray-400 mb-1"
-                            style={{ fontFamily: "'Quicksand', sans-serif" }}
-                          >
+                          <p className="text-xs text-gray-400 mb-1 font-quicksand">
                             Size: {item.size}
                           </p>
-                          <p
-                            className="text-sm text-gray-700 mb-2"
-                            style={{ fontFamily: "'Quicksand', sans-serif" }}
-                          >
+                          <p className="text-sm text-gray-700 mb-2 font-quicksand">
                             &euro;{item.price.toLocaleString()}
                           </p>
 
                           {/* Quantity + Remove */}
                           <div className="flex items-center justify-between">
-                            <div
-                              className="inline-flex items-center border rounded-full"
-                              style={{ borderColor: '#d2c8be' }}
-                            >
+                            <div className="inline-flex items-center border rounded-full border-muted">
                               <button
                                 onClick={() => updateQuantity(item.id, item.size, item.quantity - 1)}
                                 className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-700 transition-colors"
                               >
                                 <Minus size={12} />
                               </button>
-                              <span
-                                className="w-6 text-center text-xs font-medium"
-                                style={{ fontFamily: "'Quicksand', sans-serif" }}
-                              >
+                              <span className="w-6 text-center text-xs font-medium font-quicksand">
                                 {item.quantity}
                               </span>
                               <button
@@ -138,8 +124,7 @@ export default function CartDrawer() {
                             </div>
                             <button
                               onClick={() => removeItem(item.id, item.size)}
-                              className="text-[10px] tracking-wider underline hover:opacity-70 transition-opacity"
-                              style={{ color: '#7a0000', fontFamily: "'Quicksand', sans-serif" }}
+                              className="text-[10px] tracking-wider underline hover:opacity-70 transition-opacity text-jewellect-maroon font-quicksand"
                             >
                               Remove
                             </button>
@@ -151,34 +136,22 @@ export default function CartDrawer() {
                 </div>
 
                 {/* Order Summary + Buttons */}
-                <div className="border-t" style={{ borderColor: '#d2c8be' }}>
+                <div className="border-t border-muted">
                   <div className="px-6 pt-5 pb-2">
                     <div className="flex justify-between items-center mb-2">
-                      <span
-                        className="text-sm font-medium text-gray-700"
-                        style={{ fontFamily: "'Quicksand', sans-serif" }}
-                      >
+                      <span className="text-sm font-medium text-gray-700 font-quicksand">
                         Subtotal
                       </span>
-                      <span
-                        className="text-sm font-semibold text-gray-900"
-                        style={{ fontFamily: "'Quicksand', sans-serif" }}
-                      >
+                      <span className="text-sm font-semibold text-gray-900 font-quicksand">
                         &euro;{total.toLocaleString()}
                       </span>
                     </div>
-                    <p
-                      className="text-[10px] text-gray-400 italic mb-3"
-                      style={{ fontFamily: "'Quicksand', sans-serif" }}
-                    >
+                    <p className="text-[10px] text-gray-400 italic mb-3 font-quicksand">
                       Shipping calculated at checkout
                     </p>
                     <div className="h-px bg-gray-100 mb-3" />
                     {total >= 500 && (
-                      <p
-                        className="text-[10px] tracking-wider mb-4"
-                        style={{ color: '#7a0000', fontFamily: "'Quicksand', sans-serif" }}
-                      >
+                      <p className="text-[10px] tracking-wider mb-4 text-jewellect-maroon font-quicksand">
                         Complimentary shipping on orders over &euro;500
                       </p>
                     )}
@@ -186,32 +159,17 @@ export default function CartDrawer() {
 
                   <div className="px-6 pb-6 space-y-3">
                     <button
-                      className="w-full py-4 text-white text-xs tracking-[0.25em] uppercase transition-colors duration-300 flex items-center justify-center gap-2"
-                      style={{
-                        backgroundColor: '#000000',
-                        fontFamily: "'Quicksand', sans-serif",
+                      onClick={() => {
+                        closeCart();
+                        router.push('/checkout');
                       }}
-                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#7a0000')}
-                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#000000')}
+                      className="w-full py-4 text-white text-xs tracking-[0.25em] uppercase transition-colors duration-300 flex items-center justify-center gap-2 bg-jewellect-black hover:bg-jewellect-maroon font-quicksand"
                     >
                       Proceed to Checkout
                     </button>
                     <button
                       onClick={closeCart}
-                      className="w-full py-3.5 text-xs tracking-[0.25em] uppercase border transition-colors duration-300"
-                      style={{
-                        borderColor: '#000000',
-                        color: '#000000',
-                        fontFamily: "'Quicksand', sans-serif",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = '#7a0000';
-                        e.currentTarget.style.color = '#7a0000';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = '#000000';
-                        e.currentTarget.style.color = '#000000';
-                      }}
+                      className="w-full py-3.5 text-xs tracking-[0.25em] uppercase border border-jewellect-black text-jewellect-black hover:border-jewellect-maroon hover:text-jewellect-maroon transition-colors duration-300 font-quicksand"
                     >
                       Continue Shopping
                     </button>
