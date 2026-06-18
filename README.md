@@ -1,4 +1,4 @@
-# Jewellect
+# Her
 
 A luxury fashion e-commerce platform built with Next.js 13 (App Router), TypeScript, Tailwind CSS, shadcn/ui, Zustand, and Framer Motion.
 
