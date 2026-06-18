@@ -60,7 +60,7 @@ export default function Footer() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="font-script text-3xl">Jewellect</p>
+          <p className="font-script text-3xl">her</p>
           <p className="text-xs tracking-widest text-gray-400 mt-1">
             EST. 2030
           </p>

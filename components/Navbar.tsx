@@ -50,7 +50,7 @@ export default function Navbar() {
             <Link href="/" className="group cursor-pointer">
               <div className="text-center">
                 <p className={`font-script text-2xl tracking-widest hover:opacity-70 transition ${linkColor}`}>
-                  Jewellect
+                  her
                 </p>
                 <p className={`text-xs tracking-widest ${isScrolled ? 'text-jewellect-wine' : 'text-white/70'}`}>
                   EST. 2030

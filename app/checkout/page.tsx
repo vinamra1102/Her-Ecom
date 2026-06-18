@@ -203,7 +203,7 @@ export default function CheckoutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 text-center">
           <Link href="/" className="inline-block">
             <p className="font-script text-2xl tracking-widest text-jewellect-black hover:opacity-70 transition">
-              Jewellect
+              her
             </p>
             <p className="text-[9px] tracking-[0.3em] text-gray-400 font-quicksand">
               EST. 2030

@@ -2,6 +2,9 @@
 - Run `npm run typecheck`, `npm run lint`, and `npm run build` after making code changes to verify nothing is broken. Confidence: 0.75
 - After completing a set of changes, produce a summary listing every file touched with a one-line reason and the exact commands run to verify. Confidence: 0.75
 
+# git
+- When committing, never include co-author attribution and never include any traces of AI use in commit messages. Confidence: 0.80
+
 # architecture
 - Use CSS variables for all theming/color values instead of hardcoded hex colors, so future rebrands only require editing one file. Confidence: 0.80
 - Do not hand-edit files inside components/ui/* or hooks/use-toast.ts — these vendored shadcn/ui primitives theme themselves entirely through CSS variables. Confidence: 0.80

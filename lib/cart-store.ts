@@ -68,6 +68,7 @@ export const useCartStore = create<CartState>()(
 }),
     {
       name: 'jewellect-cart',
+      skipHydration: true,
     }
   )
 );

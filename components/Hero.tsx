@@ -62,7 +62,7 @@ export default function Hero() {
           className="font-script text-white mb-4"
           style={{ fontSize: 'clamp(60px, 12vw, 120px)' }}
         >
-          Jewellect
+          her
         </motion.h1>
 
         {/* Tagline */}
@@ -71,7 +71,7 @@ export default function Hero() {
           className="text-white tracking-[0.3em] mb-12 font-light"
           style={{ fontSize: 'clamp(14px, 2vw, 24px)' }}
         >
-          TIMELESS LUXURY
+          FOR ALL WOMEN
         </motion.p>
 
         {/* CTA Button */}

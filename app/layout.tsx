@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Cormorant, Italianno, Quicksand } from 'next/font/google';
 import CustomCursor from '@/components/CustomCursor';
+import CartHydration from '@/components/CartHydration';
 
 const cormorant = Cormorant({
   subsets: ['latin'],
@@ -22,11 +23,11 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
-  title: 'Jewellect — Timeless Luxury Fashion',
-  description: 'Curated luxury fashion for the modern woman. Discover our collection of refined clothing and accessories.',
+  title: 'HER — For All Women | Luxury Feminine Fashion',
+  description: 'Timeless. Refined. Hers. Discover our curated collection of luxury feminine clothing for the woman of quiet luxury.',
   openGraph: {
-    title: 'Jewellect — Timeless Luxury Fashion',
-    description: 'Curated luxury fashion for the modern woman.',
+    title: 'HER — For All Women | Luxury Feminine Fashion',
+    description: 'Timeless. Refined. Hers. Discover our curated collection of luxury feminine clothing.',
     images: [
       {
         url: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?fit=crop&w=1200&h=630',
@@ -44,6 +45,7 @@ export default function RootLayout({
     <html lang="en" className={`${cormorant.variable} ${italianno.variable} ${quicksand.variable}`}>
       <body className="antialiased">
         <CustomCursor />
+        <CartHydration />
         {children}
       </body>
     </html>

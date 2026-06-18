@@ -24,7 +24,7 @@ export default function EditorialBanner() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="font-script text-4xl md:text-5xl text-white mb-6"
         >
-          Timeless. Refined. Yours.
+          Timeless. Refined. Hers.
         </motion.h2>
 
         {/* Subtext */}
